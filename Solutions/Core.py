@@ -23,8 +23,11 @@ def all_expenses():
 
     cursor.execute('''SELECT * FROM expenses''')
     expense = cursor.fetchall()
-    for i in expense:
-        print(i)
+    if len(expense) == 0:
+        print("Таблиця порожня")
+    else:
+        for i in expense:
+            print(i)
 
 
 os.system("cls")
@@ -40,6 +43,8 @@ while True:
 
     elif x == '2':
         all_expenses()
+        input()
+        os.system('cls')
 
     elif x == "9":
         break
@@ -50,7 +55,7 @@ while True:
         answer = input()
 
         if answer == 'y':
-            cursor.execute("""DELETE * FROM expenses""")
+            cursor.execute("""DELETE FROM expenses""")
         if answer == 'n':
             pass
 
