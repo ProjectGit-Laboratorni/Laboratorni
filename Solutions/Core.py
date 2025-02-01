@@ -25,10 +25,10 @@ def all_expenses():
     cursor.execute('''SELECT * FROM expenses''')
     expense = cursor.fetchall()
     if len(expense) == 0:
-        print("Таблиця порожня")
+        print("Таблиця порожня.")
     else:
         print(pd.DataFrame(expense, columns=['Номер витрати', 'Кількість', 'Куди', 'Дата']))
-        input("Натисніть Enter")
+        input("Натисніть Enter.")
 
 
 os.system("cls")
