@@ -1,0 +1,41 @@
+diff --git a/Solutions/Core.py b/Solutions/Core.py
+index 4652a8d..306ab14 100644
+--- a/Solutions/Core.py
++++ b/Solutions/Core.py
+@@ -1,5 +1,6 @@
+ import sqlite3
+ import os
++import pandas as pd
+ 
+ conn = sqlite3.connect('expenses.db')
+ cursor = conn.cursor()
+@@ -26,8 +27,8 @@ def all_expenses():
+     if len(expense) == 0:
+         print("Таблиця порожня")
+     else:
+-        for i in expense:
+-            print(i)
++        print(pd.DataFrame(expense, columns=['Номер витрати', 'Кількість', 'Куди', 'Дата']))
++        input("Натисніть Enter")
+ 
+ 
+ os.system("cls")
+@@ -43,7 +44,6 @@ while True:
+ 
+     elif x == '2':
+         all_expenses()
+-        input()
+         os.system('cls')
+ 
+     elif x == "9":
+@@ -56,6 +56,7 @@ while True:
+ 
+         if answer == 'y':
+             cursor.execute("""DELETE FROM expenses""")
++            conn.commit()
+         if answer == 'n':
+             pass
+ 
+diff --git a/Solutions/expenses.db b/Solutions/expenses.db
+index 9ea47db..4efd361 100644
+Binary files a/Solutions/expenses.db and b/Solutions/expenses.db differ

@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import pandas as pd
 
 conn = sqlite3.connect('expenses.db')
 cursor = conn.cursor()
@@ -26,8 +27,8 @@ def all_expenses():
     if len(expense) == 0:
         print("Таблиця порожня")
     else:
-        for i in expense:
-            print(i)
+        print(pd.DataFrame(expense, columns=['Номер витрати', 'Кількість', 'Куди', 'Дата']))
+        input("Натисніть Enter")
 
 
 os.system("cls")
@@ -43,7 +44,6 @@ while True:
 
     elif x == '2':
         all_expenses()
-        input()
         os.system('cls')
 
     elif x == "9":
@@ -56,6 +56,7 @@ while True:
 
         if answer == 'y':
             cursor.execute("""DELETE FROM expenses""")
+            conn.commit()
         if answer == 'n':
             pass
 
